@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" ">
+    <meta name="keywords" content="质量体系">
+    <title>制造管理与控制</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #00796b;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            height: 45px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .container {
+            margin: 40px auto;
+            width: 85%;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #00796b;
+        }
+
+        /* 表格基础样式 */
+        .phase-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .phase-table th {
+            background-color: #00796b;
+            color: white;
+            font-weight: 500;
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        /* 单元格样式 */
+        .phase-table td {
+            padding: 0;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        /* 第一列样式 */
+        .phase-table td:first-child {
+            padding: 15px;
+            font-weight: 600;
+            color: #00796b;
+            width: 80px;
+        }
+
+        /* 链接样式 */
+        .phase-link {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 悬浮效果 */
+        .phase-link:hover {
+            background-color: #00796b;
+            color: white;
+            transform: scale(1.05);
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 工具提示样式 */
+        .phase-link[data-tooltip] {
+            position: relative;
+        }
+
+        .phase-link[data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .phase-link[data-tooltip]:hover::after {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+            header {
+                padding: 10px 15px;
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 5px 0;
+            }
+
+            .phase-table {
+                font-size: 14px;
+            }
+
+            .phase-table td, .phase-table th {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="校徽.png" alt="上海理工大学管理学院" style="height: 45px;">
+        <nav>
+            <ul>
+                <li><a href="index.html"> </a></li>
+                <li><a href="quality.html"> </a></li>
+                <li><a href="manufacture.html"> </a></li>
+                <li><a href="analysis.html"> </a></li>
+                <li><a href="report.html"> </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="title">L 制造管理和控制</div>
+            <table class="phase-table">
+                <tr>
+                    <th>阶段</th>
+                    <th>解决方案分析阶段</th>
+                    <th>技术成熟和风险降低阶段</th>
+                    <th>工程和制造开发阶段</th>
+                    <th>生产和资源配置阶段</th>
+                </tr>
+                <tr>
+                    <td>L.1</td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">更新制造管理要求</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">审查承包商初步制造计划</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">评估承包商制造管理系统</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">进行制造规划</a></td>
+                </tr>
+                <tr>
+                    <td>L.2</td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">制定初步制造策略</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">更新制造策略</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">更新制造战略与计划</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">执行小批量生产/量产制造策略</a></td>
+                </tr>
+                <tr>
+                    <td>L.3</td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">支持工业网络安全管理和风险评估</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">评估承包商制造管理系统</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">评估供应链管理</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">支持工业网络安全管理和风险评估</a></td>
+                </tr>
+                <tr>
+                    <td>L.4</td>
+                    <td></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">最终确定 EMD 的制造战略和计划</a></td>
+                    <td><a href="3-1.html" class="phase-link" data-tooltip="点击查看详细信息">执行试点生产线</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>L.5</td>
+                    <td></td>
+                    <td><a href="L5_2.html" class="phase-link" data-tooltip="点击查看详细信息">支持工业网络安全管理和风险评估</a></td>
+                    <td><a href="L5_3.html" class="phase-link" data-tooltip="点击查看详细信息">更新LRIP的制造战略与计划</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>L.6</td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="L6_3.html" class="phase-link" data-tooltip="点击查看详细信息">支持工业网络安全管理和风险评估</a></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

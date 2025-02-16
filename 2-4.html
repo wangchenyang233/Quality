@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=" ">
+    <meta name="keywords" content="质量体系">
+    <title>过程能力与控制</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #00796b;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            height: 45px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .container {
+            margin: 40px auto;
+            width: 85%;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #00796b;
+        }
+
+        /* 表格基础样式 */
+        .phase-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .phase-table th {
+            background-color: #00796b;
+            color: white;
+            font-weight: 500;
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        /* 单元格样式 */
+        .phase-table td {
+            padding: 0;
+            border: 1px solid #ddd;
+            position: relative;
+        }
+
+        /* 第一列样式 */
+        .phase-table td:first-child {
+            padding: 15px;
+            font-weight: 600;
+            color: #00796b;
+            width: 80px;
+        }
+
+        /* 链接样式 */
+        .phase-link {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* 悬浮效果 */
+        .phase-link:hover {
+            background-color: #00796b;
+            color: white;
+            transform: scale(1.05);
+            z-index: 1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 工具提示样式 */
+        .phase-link[data-tooltip] {
+            position: relative;
+        }
+
+        .phase-link[data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .phase-link[data-tooltip]:hover::after {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                margin: 20px auto;
+            }
+
+            header {
+                padding: 10px 15px;
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav li {
+                margin: 5px 0;
+            }
+
+            .phase-table {
+                font-size: 14px;
+            }
+
+            .phase-table td, .phase-table th {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="奇瑞商用车" style="height: 45px;">
+        <nav>
+            <ul>
+                <li><a href="index.html"> </a></li>
+                <li><a href="quality.html"> </a></li>
+                <li><a href="manufacture.html"> </a></li>
+                <li><a href="analysis.html"> </a></li>
+                <li><a href="report.html"> </a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="title">H 过程能力与控制</div>
+            <table class="phase-table">
+                <tr>
+                    <th>阶段</th>
+                    <th>解决方案分析阶段</th>
+                    <th>技术成熟和风险降低阶段</th>
+                    <th>工程和制造开发阶段</th>
+                    <th>生产和资源配置阶段</th>
+                </tr>
+                <tr>
+                    <td>H.1</td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">确定所需的过程能力</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">确定所需的过程能力</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">更新过程能力要求</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">确定所需的过程能力</a></td>
+                </tr>
+                <tr>
+                    <td>H.2</td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">启动过程能力研究</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">功能级别的建模和仿真</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">更新和验证模型与仿真</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">进行过程能力研究</a></td>
+                </tr>
+                <tr>
+                    <td>H.3</td>
+                    <td></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">进行过程能力研究</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">成熟的关键制造过程</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">成熟关键制造过程</a></td>
+                </tr>
+                <tr>
+                    <td>H.4</td>
+                    <td></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">子系统/系统级建模和仿真（M&S）</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">在试点生产线上展示制造成熟度</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">专注于制造风险降低</a></td>
+                </tr>
+                <tr>
+                    <td>H.5</td>
+                    <td></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">在相关环境中的制造过程演示</a></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">验证产量和比率</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>H.6</td>
+                    <td></td>
+                    <td><a href="H.html" class="phase-link" data-tooltip="点击查看详细信息">从原型构建中评估实际过程能力</a></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+
+            </table>
+        </div>
+    </main>
+</body>
+</html>

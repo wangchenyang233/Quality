@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="探索质量管理体系文件的。">
+    <meta name="keywords" content="质量体系">
+    <title>质量体系服务平台</title>
+    <style>
+        /* 引入 Google 字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            background-color: #00796b;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            height: 45px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0 20px;
+        }
+
+        nav a {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .container {
+            margin: 40px auto;
+            width: 85%;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #00796b;
+        }
+
+        footer {
+            margin-top: 30px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                display: block;
+                margin-top: 15px;
+            }
+
+            nav li {
+                margin: 10px 0;
+            }
+
+            .container {
+                width: 90%;
+            }
+        }
+
+        /* 特定页面样式 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            grid-template-rows: auto;
+        }
+
+        .grid-item {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            text-align: left;
+        }
+
+        /* 中间的项卡突出显示，去掉背景颜色变化，只保留放大效果 */
+        .grid-item.middle {
+            transform: scale(1.05);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .grid-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00796b;
+        }
+
+        .grid-item p {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="校徽.png" alt="上海理工大学" style="height: 45px;">
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active"></a></li>
+                <li><a href="quality.html"></a></li>
+                <li><a href="manufacture.html"> </a></li>
+                <li><a href="analysis.html"></a></li>
+                <li><a href="report.html"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="title">制造和质量关键活动</div>
+            <div class="grid">
+                <a href="2-1.html" class="grid-item">
+                    <h3 class="title-zh">D 技术和工业基础</h3>
+
+                </a>
+                <a href="2-2.html" class="grid-item middle">
+                    <h3 class="title-zh">E 设计</h3>
+
+                </a>
+                <a href="2-3.html" class="grid-item">
+                    <h3 class="title-zh">G 物料管理</h3>
+
+                </a>
+                <a href="2-4.html" class="grid-item">
+                    <h3 class="title-zh">H 过程能力与控制</h3>
+
+                </a>
+                <a href="2-5.html" class="grid-item middle">
+                    <h3 class="title-zh">I 质量管理</h3>
+
+                </a>
+                <a href="2-6.html" class="grid-item">
+                    <h3 class="title-zh">L 制造管理与控制</h3>
+
+                </a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
