@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="制造管理与控制">
+    <meta name="keywords" content="质量体系, 制造管理, AS6500">
+    <title>制造管理与控制</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        header {
+            background-color: #00796b;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #e9ecef;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            font-weight: bold;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .task-section { background-color: #FFDDC1; }
+        .tool-section { background-color: #D1E8E2; }
+        .resource-section { background-color: #FFABAB; }
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: bold;
+        }
+        ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="校徽.png" alt="上海理工大学管理学院" style="height: 45px;">
+        <nav>
+
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="title">评估承包商制造管理系统</div>
+
+            <div class="section task-section">
+                <div class="section-title">制造和质量任务</div>
+                <ul>
+                    <li><strong>1.1 评估承包商的制造管理系统能力，以按照行业最佳实践（即，AS6500）执行设计和制造工作范围，包括（见I.3）：</strong></li>
+                    <ul>
+                        <li>（1）项目和承包商沟通与互动过程的有效性，包括：</li>
+                        <ul>
+                            <li>a. 成本、进度和性能要求以及及时变更通知；</li>
+                            <li>b. 制造数据管理流程（包括成本、进度和性能实际情况的响应、状态和报告）；</li>
+                            <li>c. 风险、问题和机会管理流程的整合；</li>
+                            <li>d. 故障、纠正和预防措施、沟通流程；</li>
+                            <li>e. 原型的规范和生产</li>
+                        </ul>
+                        <li>（2）结合可生产性和制造可行性的设计分析</li>
+                        <li>（3）故障模式分析流程</li>
+                        <li>（4）关键特性管理流程</li>
+                        <li>（5）风险、问题和机会管理流程（包括质量、技术、进度、材料、设施、规模扩大、财务影响等）</li>
+                        <li>（6）制造/采购流程（包括性能和影响）</li>
+                        <li>（7）防止和/或检测假冒零件的流程和程序材料</li>
+                        <li>（8）专注于并衡量持续改进的发展项目</li>
+                        <li>（9）有效的指标管理流程，以识别、监控、评估和验证改进流程，并防止缺陷</li>
+                        <li>（10）供应商管理系统，跟踪和报告供应商绩效，包括供应商质量评估过程</li>
+                        <li>（11）制造验证系统，用于验证提议的生产过程，工具和测试设备符合项目要求（包括特殊工具和特殊测试设备）</li>
+                        <li>（12）制造评估和自我评估过程，以衡量进展，制造成熟度和风险降低</li>
+                        <li>（13）COTS项目、GOTS项目和NDI的管理流程</li>
+                        <li>（14）GFE/GFP的管理流程（例如，受控产品、测试场、专业设备、辐射测试设施等），包括角色和职责</li>
+                        <li>（15）生产过程验证（PPVs），用于验证制造过程、工具，设备在统计上能够生产所需的零件和组件</li>
+                        <li>（16）过程控制规划结合过程能力研究</li>
+                        <li>（17）波动降低 (VR) 过程和技术</li>
+                        <li>（18）制造软件和固件管理流程及其集成（包括SDP和SCMP）</li>
+                        <li>（19）开发过程中的过程和验收测试（包括原型、首次文章、硬件、软件和固件）、测试程序，包括测试设备，以及纳入TEMP</li>
+                    </ul>
+                    <li><strong>1.2 评估承包商的材料和库存控制系统，以确定其是否足够并能够有效满足与行业最佳实践一致的项目要求，包括：</strong></li>
+                    <ul>
+                        <li>（1）一个适当的材料、制造或企业资源计划系统（MRP/MRPII/企业资源计划（ERP）），包括成本控制、产能和设施规划、经济订货量、库存控制、车间控制、物料清单、调度、采购等。</li>
+                        <li>（2）适当的组织/专业知识，以有效操作、分析和维护该系统</li>
+                    </ul>
+                    <li><strong>1.3 评估承包商的制造管理系统流程，以纳入M&Q在IMP/IMS的开发、管理、执行和维护中的作用，包括以下流程：</strong></li>
+                    <ul>
+                        <li>（1）识别和评估实际进展与计划进展的差异</li>
+                        <li>（2）监控和管理关键路径</li>
+                        <li>（3）监控风险、问题和机会管理的状态</li>
+                        <li>（4）管理关键性能参数、关键系统属性、技术性能指标和关键特性</li>
+                    </ul>
+                    <li><strong>1.4 评估承包商的制造管理系统在制定集成产品支持计划（如有需要）方面的能力，包括EMD、生产、开发和操作测试以及生命周期维持的规划</strong></li>
+                    <li><strong>1.5 评估承包商的制造管理系统的自制或外购决策过程，以确保符合项目的制造与质量目标，包括：</strong></li>
+                    <ul>
+                        <li>（1）特定制造/采购决策的理由</li>
+                        <li>（2）识别可能变得过时或来自逐渐减少或脆弱的制造来源及应急计划</li>
+                        <li>（3）识别唯一来源、单一来源或外国来源的项目及应急计划</li>
+                        <li>（4）可用性和交货时间（包括长交货时间）</li>
+                        <li>（5）ITAR和防篡改考虑</li>
+                        <li>（6）安全影响</li>
+                        <li>（7）COTS项目、GOTS项目、NDI和GFE/GFP（例如，受控产品、测试范围，专业设备、测试设施等）</li>
+                    </ul>
+                    <li><strong>1.6 分析承包商的供应商管理系统能力，以按照行业最佳实践（即 AS6500）执行预期的设计和制造工作范围，包括：</strong></li>
+                    <ul>
+                        <li>（1）主要承包商和分包商沟通与互动流程的有效性，包括：</li>
+                        <ul>
+                            <li>a. 将成本、进度和绩效要求传递给供应商，并及时通知变更；</li>
+                            <li>b. 质量数据交换流程；</li>
+                            <li>c. 风险、问题和机会管理的整合；</li>
+                            <li>d. 成本、进度和绩效实际情况的响应、状态和报告；</li>
+                            <li>e. 纠正和预防措施、沟通以及最终用户反馈；</li>
+                            <li>f. 原型的规范和生产</li>
+                        </ul>
+                        <li>（2）关键特性管理</li>
+                        <li>（3）供应商风险、问题和机会管理流程，涉及质量、技术、进度、材料、设施、规模扩大、财务影响等。</li>
+                        <li>（4）供应商质量绩效和影响的自制/外购流程</li>
+                        <li>（5）供应商的批准/移除和资格认证流程，包括定期重新评估</li>
+                        <li>（6）防止和/或检测假冒零件的流程和程序材料（参见AS5553和AS6174）</li>
+                        <li>（7）识别主要和关键供应商，以及执行关键制造过程的供应商制造过程</li>
+                        <li>（8）专注于并衡量持续改进的供应商发展计划</li>
+                        <li>（9）有效的指标用于监控、评估、验证、改进过程，并防止缺陷</li>
+                    </ul>
+                    <li><strong>1.7 分析承包商的供应商管理系统和质量管理计划：</strong></li>
+                    <ul>
+                        <li>（1）对COTS项目、GOTS项目和NDI的管理及其纳入承包商的质量管理系统（QMS）。</li>
+                        <li>（2）GFE/GFP的角色、职责和质量流程（例如，受控产品、测试范围、专用设备、辐射测试设施等）</li>
+                        <li>（3）软件和固件质量及其与程序软件质量保证计划、软件开发计划和软件配置管理计划的集成</li>
+                        <li>（4）验收测试（原型、硬件、软件和固件）、测试程序包括测试设备，以及纳入TEMP</li>
+                    </ul>
+                    <li><strong>1.8 验证合同和分包商管理计划，包括承包商和政府对供应商设施和文档的访问权（如适用）。</strong></li>
+                    <li><strong>1.9 请求 DMCA 协助收集、评估、分析和验证承包商的制造管理系统，包括供应链。</strong></li>
+                </ul>
+            </div>
+
+            <div class="section tool-section">
+                <div class="section-title">工具</div>
+                <ul>
+                    <li>AS6500 评估</li>
+                    <li>独立技术风险评估检查表</li>
+                    <li>互动制造成熟度等级用户指南清单，适用于制造管理/控制线程</li>
+                    <li>制造成熟度计划</li>
+                    <li>物料管理和会计系统审计</li>
+                </ul>
+            </div>
+
+            <div class="section resource-section">
+                <div class="section-title">资源</div>
+                <ul>
+                    <li>AS5553，假冒电子零件；避免、检测、减轻和处置</li>
+                    <li>AS6174，假冒物资；确保获得真实和符合标准的物资</li>
+                    <li>AS6500，制造管理计划</li>
+                    <li>AS9100，航空、航天和国防组织的质量体系要求</li>
+                    <li>国防技术风险评估方法论（DTRAM）</li>
+                    <li>DFAR242.72，承包商物料管理和会计系统</li>
+                    <li>国防部指令5000.88，国防系统工程</li>
+                    <li>IEEE15288.1-2014，国防项目系统工程的应用</li>
+                    <li>IEEE15288.2-2014，国防项目的技术评审和审计</li>
+                    <li>制造成熟度等级（MRL）手册</li>
+                    <li>MIL-HDBK-896，制造管理程序指南</li>
+                    <li>2017财年国防授权法案，公共法案114-328，第807条，重大国防采办项目的成本、进度和绩效</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
