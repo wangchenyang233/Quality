@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>手机号码登录</title>
+    <title>手机号登录</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Microsoft YaHei', sans-serif; }
         body { display: flex; align-items: center; justify-content: center; height: 100vh; background: #f4f4f4; }
@@ -13,23 +13,25 @@
         button { width: 100%; padding: 10px; border: none; background: #00416A; color: white; font-size: 16px; cursor: pointer; border-radius: 5px; }
         button:hover { background: #002d4a; }
         .error-message { color: red; font-size: 14px; margin-top: 10px; }
+        .loading { display: none; color: #00aaff; font-size: 14px; margin-top: 10px; }
     </style>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">手机号码登录</h1>
+        <h1 class="title">手机号登录</h1>
 
-        <input type="text" id="phoneNumber" placeholder="输入手机号" required>
-        <button id="sendCodeBtn">发送验证码</button>
-
-        <input type="text" id="verificationCode" placeholder="输入验证码" required style="display:none;">
-        <button id="verifyCodeBtn" style="display:none;">验证验证码</button>
+        <form id="phoneLoginForm">
+            <input type="text" id="phoneNumber" placeholder="输入手机号" required>
+            <input type="text" id="verificationCode" placeholder="输入验证码" required>
+            <button type="submit">登 录</button>
+        </form>
 
         <p id="error-message" class="error-message"></p>
+        <p id="loadingMessage" class="loading">正在登录...</p>
+
+        <button id="sendCodeButton" onclick="sendVerificationCode()">发送验证码</button>
+
+        <p>没有账号？ <a href="register.html">立即注册</a></p>
     </div>
 
     <script type="module">
@@ -49,38 +51,70 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Setup reCAPTCHA
-        window.recaptchaVerifier = new RecaptchaVerifier('sendCodeBtn', {
-            size: 'invisible',
-            callback: (response) => {}
-        }, auth);
+        let verificationId = null;
 
-        document.getElementById('sendCodeBtn').addEventListener('click', () => {
-            const phoneNumber = document.getElementById('phoneNumber').value;
-            const appVerifier = window.recaptchaVerifier;
+        // 显示加载信息
+        function showLoading(isLoading) {
+            document.getElementById("loadingMessage").style.display = isLoading ? "block" : "none";
+        }
 
-            signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-                .then((confirmationResult) => {
-                    window.confirmationResult = confirmationResult;
-                    document.getElementById('verificationCode').style.display = 'block';
-                    document.getElementById('verifyCodeBtn').style.display = 'block';
-                })
-                .catch((error) => {
-                    document.getElementById('error-message').textContent = `⚠️ ${error.message}`;
-                });
-        });
+        // 发送验证码
+        function sendVerificationCode() {
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const errorMessage = document.getElementById("error-message");
 
-        document.getElementById('verifyCodeBtn').addEventListener('click', () => {
-            const verificationCode = document.getElementById('verificationCode').value;
+            if (!phoneNumber) {
+                errorMessage.textContent = "⚠️ 请填写手机号！";
+                return;
+            }
 
-            window.confirmationResult.confirm(verificationCode)
-                .then((result) => {
-                    alert("登录成功！");
-                    window.location.href = "1.html";
-                })
-                .catch((error) => {
-                    document.getElementById('error-message').textContent = `⚠️ ${error.message}`;
-                });
+            showLoading(true);
+
+            const recaptchaVerifier = new RecaptchaVerifier('sendCodeButton', {
+                size: 'invisible',
+                callback: (response) => {
+                    console.log("reCAPTCHA 验证通过！");
+                }
+            }, auth);
+
+            recaptchaVerifier.render().then(() => {
+                signInWithPhoneNumber(auth, `+86${phoneNumber}`, recaptchaVerifier)
+                    .then((confirmationResult) => {
+                        verificationId = confirmationResult.verificationId;
+                        errorMessage.textContent = "验证码已发送！";
+                    })
+                    .catch((error) => {
+                        errorMessage.textContent = `⚠️ ${error.message}`;
+                    })
+                    .finally(() => {
+                        showLoading(false);
+                    });
+            });
+        }
+
+        // 处理登录
+        document.getElementById("phoneLoginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const verificationCode = document.getElementById("verificationCode").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (!verificationCode) {
+                errorMessage.textContent = "⚠️ 请填写验证码！";
+                return;
+            }
+
+            showLoading(true);
+
+            try {
+                const credential = await auth.signInWithCredential(verificationId, verificationCode);
+                alert("登录成功！");
+                window.location.href = "1.html"; // 跳转到登录后页面
+            } catch (error) {
+                errorMessage.textContent = `⚠️ ${error.message}`;
+            } finally {
+                showLoading(false);
+            }
         });
     </script>
 </body>
