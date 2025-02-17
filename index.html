@@ -67,7 +67,7 @@
             try {
                 await signInWithEmailAndPassword(auth, email, password);
                 alert("登录成功！");
-                window.location.href = "dashboard.html";
+                window.location.href = "1.html";
             } catch (error) {
                 errorMessage.textContent = `⚠️ ${error.message}`;
             }
@@ -78,7 +78,7 @@
             try {
                 await signInWithPopup(auth, provider);
                 alert("Google 登录成功！");
-                window.location.href = "dashboard.html";
+                window.location.href = "1.html";
             } catch (error) {
                 document.getElementById("error-message").textContent = `⚠️ ${error.message}`;
             }
