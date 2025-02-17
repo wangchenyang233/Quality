@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>注册系统</title>
+    <title>登录系统</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Microsoft YaHei', sans-serif; }
         body { display: flex; align-items: center; justify-content: center; height: 100vh; background: #f4f4f4; }
@@ -13,30 +13,40 @@
         button { width: 100%; padding: 10px; border: none; background: #00416A; color: white; font-size: 16px; cursor: pointer; border-radius: 5px; }
         button:hover { background: #002d4a; }
         .error-message { color: red; font-size: 14px; margin-top: 10px; }
-        .loading { display: none; color: #00aaff; font-size: 14px; margin-top: 10px; }
+        .google-login { margin-top: 15px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+        .google-login img { width: 25px; margin-right: 10px; }
+        .phone-login { margin-top: 10px; color: #007bff; cursor: pointer; }
     </style>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1 class="title">用户注册</h1>
+        <h1 class="title">用户登录</h1>
 
-        <form id="registerForm">
-            <input type="email" id="registerEmail" placeholder="输入邮箱" required>
-            <input type="password" id="registerPassword" placeholder="输入密码" required>
-            <input type="password" id="confirmPassword" placeholder="确认密码" required>
-            <button type="submit">注 册</button>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="输入邮箱" required>
+            <input type="password" id="password" placeholder="输入密码" required>
+            <button type="submit">登 录</button>
         </form>
 
+        <!-- Google 登录 -->
+        <div class="google-login" id="googleLogin">
+            <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google 登录">  使用 Google 账号登录
+        </div>
+
         <p id="error-message" class="error-message"></p>
+        <p>还没有账号？ <a href="register.html">立即注册</a></p>
 
-        <p>已有账号？ <a href="login.html">立即登录</a></p>
-
-        <p id="loadingMessage" class="loading">正在注册...</p>
+        <p class="phone-login" id="phoneLoginSwitch">使用手机号码登录</p>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyCbEiURt7e7ZPtnhVYOUNP-1oCl9mm0ljQ",
@@ -50,42 +60,38 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
-        // 显示加载信息
-        function showLoading(isLoading) {
-            document.getElementById("loadingMessage").style.display = isLoading ? "block" : "none";
-        }
-
-        // 处理注册
-        document.getElementById("registerForm").addEventListener("submit", async (e) => {
+        // **🔥 1. 处理邮箱登录**
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
             e.preventDefault();
-
-            const email = document.getElementById("registerEmail").value;
-            const password = document.getElementById("registerPassword").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
             const errorMessage = document.getElementById("error-message");
 
-            if (!email || !password || !confirmPassword) {
-                errorMessage.textContent = "⚠️ 请填写完整的注册信息！";
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                errorMessage.textContent = "⚠️ 密码和确认密码不匹配！";
-                return;
-            }
-
-            showLoading(true);
-
             try {
-                await createUserWithEmailAndPassword(auth, email, password);
-                alert("注册成功！");
-                window.location.href = "login.html"; // 跳转到登录页面
+                await signInWithEmailAndPassword(auth, email, password);
+                alert("登录成功！");
+                window.location.href = "1.html";
             } catch (error) {
                 errorMessage.textContent = `⚠️ ${error.message}`;
-            } finally {
-                showLoading(false);
             }
+        });
+
+        // **🔥 2. 处理 Google 登录**
+        document.getElementById("googleLogin").addEventListener("click", async () => {
+            try {
+                await signInWithPopup(auth, provider);
+                alert("Google 登录成功！");
+                window.location.href = "1.html";
+            } catch (error) {
+                document.getElementById("error-message").textContent = `⚠️ ${error.message}`;
+            }
+        });
+
+        // **🔥 3. 处理手机号码登录**
+        document.getElementById("phoneLoginSwitch").addEventListener("click", () => {
+            window.location.href = "phone-login.html"; // Navigate to phone login page
         });
     </script>
 </body>
