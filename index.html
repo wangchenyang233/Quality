@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 奇瑞商用车管理系统</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Microsoft YaHei', sans-serif; }
+        body { display: flex; align-items: center; justify-content: center; height: 100vh; background: #f4f4f4; }
+        .login-container { width: 350px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-align: center; }
+        .title { font-size: 22px; font-weight: bold; margin-bottom: 20px; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+        button { width: 100%; padding: 10px; border: none; background: #00416A; color: white; font-size: 16px; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #002d4a; }
+        .error-message { color: red; font-size: 14px; margin-top: 10px; }
+        .google-login { margin-top: 15px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+        .google-login img { width: 25px; margin-right: 10px; }
+        #firebaseui-auth-container { margin-top: 20px; }
+    </style>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth__zh_cn.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="title">欢迎登录</h1>
+
+        <!-- 手动输入账号登录 -->
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="邮箱" required>
+            <input type="password" id="password" placeholder="密码" required>
+            <button type="submit">登 录</button>
+        </form>
+
+        <!-- Google 登录 -->
+        <div class="google-login" id="googleLogin">
+            <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google 登录">  使用 Google 登录
+        </div>
+
+        <p id="error-message" class="error-message"></p>
+
+        <!-- FirebaseUI 登录 -->
+        <div id="firebaseui-auth-container"></div>
+
+        <p>还没有账号？ <a href="#">立即注册</a></p>
+    </div>
+
+    <script type="module">
+        // **🔥 1. 初始化 Firebase 配置**
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCbEiURt7e7ZPtnhVYOUNP-1oCl9mm0ljQ",
+            authDomain: "login-6f3ec.firebaseapp.com",
+            projectId: "login-6f3ec",
+            storageBucket: "login-6f3ec.appspot.com",
+            messagingSenderId: "820835516055",
+            appId: "1:820835516055:web:eef29e4e716aef34efb3d2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // **🔥 2. 处理 Email 登录**
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                alert("登录成功！");
+                window.location.href = "1.html";
+            } catch (error) {
+                errorMessage.textContent = `⚠️ ${error.message}`;
+            }
+        });
+
+        // **🔥 3. 处理 Google 登录**
+        document.getElementById("googleLogin").addEventListener("click", async () => {
+            try {
+                await signInWithPopup(auth, provider);
+                alert("Google 登录成功！");
+                window.location.href = "1.html";
+            } catch (error) {
+                document.getElementById("error-message").textContent = `⚠️ ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
