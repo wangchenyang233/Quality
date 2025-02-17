@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录系统</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Microsoft YaHei', sans-serif; }
+        body { display: flex; align-items: center; justify-content: center; height: 100vh; background: #f4f4f4; }
+        .container { width: 350px; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); text-align: center; }
+        .title { font-size: 22px; font-weight: bold; margin-bottom: 20px; }
+        input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+        button { width: 100%; padding: 10px; border: none; background: #00416A; color: white; font-size: 16px; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #002d4a; }
+        .error-message { color: red; font-size: 14px; margin-top: 10px; }
+        .google-login { margin-top: 15px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+        .google-login img { width: 25px; margin-right: 10px; }
+        .login-options { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .recaptcha-container { margin-top: 20px; }
+    </style>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">用户登录</h1>
+
+        <!-- 登录方式选择 -->
+        <div class="login-options">
+            <button id="emailLoginBtn">邮箱登录</button>
+            <button id="phoneLoginBtn">手机号登录</button>
+        </div>
+
+        <!-- 邮箱登录 -->
+        <form id="loginForm" style="display: block;">
+            <input type="text" id="identifier" placeholder="输入邮箱或手机号" required>
+            <input type="password" id="password" placeholder="输入密码" required>
+            <button type="submit">登 录</button>
+        </form>
+
+        <!-- 手机号登录 -->
+        <form id="phoneForm" style="display: none;">
+            <input type="text" id="phoneNumber" placeholder="输入手机号" required>
+            <button type="button" id="getOtpBtn">获取验证码</button>
+            <input type="text" id="verificationCode" placeholder="输入验证码" style="display: none;" required>
+            <button type="button" id="submitOtpBtn" style="display: none;">验证并登录</button>
+        </form>
+
+        <!-- Google 登录 -->
+        <div class="google-login" id="googleLogin">
+            <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google 登录"> 使用 Google 账号登录
+        </div>
+
+        <p id="error-message" class="error-message"></p>
+        <p>还没有账号？ <a href="register.html">立即注册</a></p>
+
+        <!-- 用于验证码验证 -->
+        <div id="recaptcha-container" class="recaptcha-container"></div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signInWithPhoneNumber, RecaptchaVerifier } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCbEiURt7e7ZPtnhVYOUNP-1oCl9mm0ljQ",
+            authDomain: "login-6f3ec.firebaseapp.com",
+            projectId: "login-6f3ec",
+            storageBucket: "login-6f3ec.appspot.com",
+            messagingSenderId: "820835516055",
+            appId: "1:820835516055:web:eef29e4e716aef34efb3d2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // 登录方式选择
+        document.getElementById("emailLoginBtn").addEventListener("click", () => {
+            document.getElementById("loginForm").style.display = "block";
+            document.getElementById("phoneForm").style.display = "none";
+        });
+
+        document.getElementById("phoneLoginBtn").addEventListener("click", () => {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("phoneForm").style.display = "block";
+        });
+
+        // 邮箱登录
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("identifier").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                alert("登录成功！");
+                window.location.href = "1.html";
+            } catch (error) {
+                errorMessage.textContent = `⚠️ ${error.message}`;
+            }
+        });
+
+        // 手机号登录 - 获取验证码
+        document.getElementById("getOtpBtn").addEventListener("click", async () => {
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const appVerifier = new RecaptchaVerifier('recaptcha-container', {
+                'size': 'invisible',
+                'callback': (response) => {}
+            }, auth);
+
+            try {
+                const confirmationResult = await signInWithPhoneNumber(auth, `+86${phoneNumber}`, appVerifier);
+                window.confirmationResult = confirmationResult; // Store confirmation result
+                document.getElementById("verificationCode").style.display = "block";
+                document.getElementById("submitOtpBtn").style.display = "block";
+                alert("验证码已发送");
+            } catch (error) {
+                document.getElementById("error-message").textContent = `⚠️ ${error.message}`;
+            }
+        });
+
+        // 手机号登录 - 提交验证码
+        document.getElementById("submitOtpBtn").addEventListener("click", async () => {
+            const verificationCode = document.getElementById("verificationCode").value;
+
+            try {
+                await window.confirmationResult.confirm(verificationCode);
+                alert("手机号登录成功！");
+                window.location.href = "1.html";
+            } catch (error) {
+                document.getElementById("error-message").textContent = `⚠️ ${error.message}`;
+            }
+        });
+
+        // Google 登录
+        document.getElementById("googleLogin").addEventListener("click", async () => {
+            try {
+                await signInWithPopup(auth, provider);
+                alert("Google 登录成功！");
+                window.location.href = "1.html";
+            } catch (error) {
+                document.getElementById("error-message").textContent = `⚠️ ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
