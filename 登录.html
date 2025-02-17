@@ -94,6 +94,13 @@
             window.location.href = "phone-login.html"; // Navigate to phone login page
         });
 
+        document.getElementById("phoneLoginSwitch").addEventListener("click", () => {
+        console.log("手机号登录按钮被点击！");
+    // 确保 phone-login.html 页面路径正确
+        window.location.href = "phone-login.html"; 
+        });
+
+
         // **🔥 4. 处理 Firebase 验证码登录 (在 phone-login.html 页实现)**
         // To be implemented in the "phone-login.html" file.
     </script>
